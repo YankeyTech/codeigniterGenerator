@@ -10,6 +10,7 @@ public class RuleConst {
     public static final String UNDEFINE_RULE = "{Undefine Rule}";
     public static final String MODELCLASSNAME = "<MODELCLASSNAME>";
     public static final String CONTROLLERCLASSNAME = "<CONTROLLERCLASSNAME>";
+    public static final String CONTROLLERLOWER = "<CONTROLLERLOWER>";
     public static final String VIEWNAME = "<VIEWNAME>";
     
     public static final String TABLENAME = "<TABLENAME>";
@@ -17,6 +18,7 @@ public class RuleConst {
 
     public static final String PRIMARYKEY = "<PRIMARYKEY>";
     public static final String DBTYPE = "<DBTYPE>";
+    public static final String DBTYPESHORT = "<DBTYPESHORT>";
     //LOOP RULE NAME
     public static final String COLUMLOOP_BEGIN = ">>COLUMLOOP_BEGIN";
     public static final String COLUMLOOP_END = "<<COLUMLOOP_END";

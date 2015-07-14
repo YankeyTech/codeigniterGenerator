@@ -25,9 +25,11 @@ public class GeneratorUtil {
         tableDetail.setTableName(table);
         tableDetail.setColums(QueryData.showColums(table));
         tableDetail.setPrimaryKey(QueryData.showPrimaryKey(table));
-        tableDetail.setDbType(NameUtil.DbType(table));
+        tableDetail.setDbType(NameUtil.dbType(table));
+        tableDetail.setDbTypeShort(NameUtil.dbTypeShort(table));
         tableDetail.setModelClassName(NameUtil.classModelName(table));
         tableDetail.setControllerClassName(NameUtil.controllerClassName(table));
+         tableDetail.setControllerClassNameLower(NameUtil.controllerClassNameLower(table));
         tableDetail.setViewName(NameUtil.viewName(table));
         return tableDetail;
     }

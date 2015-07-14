@@ -25,19 +25,23 @@ public class QueryData {
     }
 
     public static List<String> showColums(String table) throws SQLException {
-        String sql = " SHOW COLUMNS FROM "+table;
+        String sql = " SHOW COLUMNS FROM " + table;
         List<String> result = new ArrayList<>();
 
         resultSet = QueryProcess.executeQuery(sql);
         while (resultSet.next()) {
-            result.add(resultSet.getString("Field"));
+            boolean pk = "PRI".equals(resultSet.getString("Key"));
+            boolean del = "isdelete".equals(resultSet.getString("Field"));
+            if (!pk && !del) {
+                result.add(resultSet.getString("Field"));
+            }
         }
         QueryProcess.connectionClose();
         return result;
     }
-    
-     public static String showPrimaryKey(String table) throws SQLException {
-        String sql = " SHOW INDEX  FROM  "+table+" WHERE Key_name ='PRIMARY' ";
+
+    public static String showPrimaryKey(String table) throws SQLException {
+        String sql = " SHOW INDEX  FROM  " + table + " WHERE Key_name ='PRIMARY' ";
         List<String> result = new ArrayList<>();
 
         resultSet = QueryProcess.executeQuery(sql);

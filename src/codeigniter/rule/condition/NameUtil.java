@@ -35,8 +35,13 @@ public class NameUtil {
         return result;
     }
 
-    public static String DbType(String table) {
+    public static String dbType(String table) {
         return table.toLowerCase().endsWith(TRANACTION) ? TRANACTIONTABLE : MASTERTABLE;
+    }
+
+    public static String dbTypeShort(String table) {
+
+        return dbType(table).equals(TRANACTIONTABLE) ? TRANACTION : MASTER;
     }
 
     public static String controllerClassName(String table) {
@@ -47,9 +52,14 @@ public class NameUtil {
         table = NameUtil.firstCharUpper(table.toLowerCase());
         return table;
     }
+    
+    public static String controllerClassNameLower(String table) {
+        return controllerClassName(table).toLowerCase();
+    }
+
     public static String viewName(String table) {
         return NameUtil.controllerClassName(table).toLowerCase();
-                
+
     }
 
 }

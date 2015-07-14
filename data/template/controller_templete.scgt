@@ -1,57 +1,89 @@
 {"header":{"directory":"Controller/poonnut/admin/<DBTYPE>","filename":"<CONTROLLERCLASSNAME>", "extention":"php"}}
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+if (!defined("BASEPATH")) {
+    exit("No direct script access allowed");
+}
 
 class <CONTROLLERCLASSNAME> extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('portfolio_group_model');
-        $this->load->model('portfolio_item_model');
+        $this->load->model('<DBTYPE>/<CONTROLLERLOWER>_<DBTYPESHORT>_model');
     }
 
     public function index() {
+        $this->retrieve_all();
+    }
 
-        $data['portfolio_group_list'] = $this->portfolio_group_model->get_all();
-
-        $this->template->append_page_section('admin/portfolio/portfolio_group_form');
-        $this->template->append_page_section('admin/portfolio/portfolio_group_table');
+    protected function form($data) {
+        $this->template->append_page_section('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_form');
         $this->template->render_admin_template($this, $data);
     }
 
-    public function portfolio_group() {
+    public function create_form() {
+        $data = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->get_object_array();
+        $data['action'] = 'action_insert';
+        $this->form($data);
+    }
 
-        $data['portfolio_group_list'] = $this->portfolio_group_model->get_all();
+    public function modify_form($<PRIMARYKEY> = '') {
+        $id = num_param_url_decode($<PRIMARYKEY>);
+        if ($id) {
+            $data = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->find_id($id);
+            $data['action'] = 'action_update';
+            $this->form($data);
+        } else {
+            not_found_error();
+        }
+    }
 
-        $this->template->append_page_section('admin/portfolio/portfolio_group_form');
-        $this->template->append_page_section('admin/portfolio/portfolio_group_table');
+    public function save() {
+        $status_id = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->save();
+        if ($status_id) {
+            echo $status_id;
+            redirect(admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>/retrieve/' . num_param_url_encode($status_id) . '/success'));
+        } else {
+            redirect(admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>/action_error'));
+        }
+    }
+
+    public function action_error() {
+        $data['url_back'] = admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>');
+        $data['error_message'] = 'action_error';
+        $this->template->append_page_section('block/error_block');
         $this->template->render_admin_template($this, $data);
     }
 
-    public function create() {
-
-        $this->portfolio_group_model->insert();
-        redirect(site_url('admin/portfolio/portfolio_group'));
+    public function remove() {
+        $status = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->update_delete();
+        if ($status) {
+            $data['url_back'] = admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>');
+            $data['succes_message'] = 'delete_success';
+            $this->template->append_page_section('block/success_block');
+            $this->template->render_admin_template($this, $data);
+        } else {
+            redirect(admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>/action_error'));
+        }
     }
 
-    public function retrieve() {
-        $data['portfolio_item_list'] = $this->portfolio_item_model->get_all();
+    public function retrieve($<PRIMARYKEY> = '', $save_success = 'none') {
+        $id = num_param_url_decode($<PRIMARYKEY>);
+        if ($id) {
+            $data = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->find_id($id);
+            $data['save_success'] = $save_success;
+            $this->template->append_page_section('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show');
+            $this->template->render_admin_template($this, $data);
+        } else {
+            not_found_error();
+        }
+    }
 
-        $this->template->append_page_section('admin/portfolio/portfolio_item_form');
-        $this->template->append_page_section('admin/portfolio/portfolio_item_table');
+    public function retrieve_all() {
+        $data['<CONTROLLERLOWER>_list'] = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->find_all();
+        $this->template->append_page_section('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show_all');
+        $this->template->append_javascript('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show_all_javascript');
         $this->template->render_admin_template($this, $data);
-    }
-
-    public function modify() {
-
-        $this->portfolio_item_model->insert();
-        redirect(site_url('admin/portfolio/portfolio_item'));
-    }
-
-    public function dispose() {
-
-        $this->template->render_admin_template($this);
     }
 
 }

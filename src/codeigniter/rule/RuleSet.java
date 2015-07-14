@@ -39,7 +39,9 @@ public class RuleSet {
         ruleSetCondition.add(RuleConst.TEMPLATENAME);
         ruleSetCondition.add(RuleConst.PRIMARYKEY);
         ruleSetCondition.add(RuleConst.DBTYPE);
+        ruleSetCondition.add(RuleConst.DBTYPESHORT);
         ruleSetCondition.add(RuleConst.CONTROLLERCLASSNAME);
+        ruleSetCondition.add(RuleConst.CONTROLLERLOWER);
         ruleSetCondition.add(RuleConst.VIEWNAME);
 
     }
@@ -88,6 +90,9 @@ public class RuleSet {
             case RuleConst.CONTROLLERCLASSNAME:
                 result = this.tableDetail.getControllerClassName();
                 break;
+            case RuleConst.CONTROLLERLOWER:
+                result = this.tableDetail.getControllerClassNameLower();
+                break;
             case RuleConst.VIEWNAME:
                 result = this.tableDetail.getViewName();
                 break;
@@ -102,6 +107,9 @@ public class RuleSet {
                 break;
             case RuleConst.DBTYPE:
                 result = this.tableDetail.getDbType();
+                break;
+            case RuleConst.DBTYPESHORT:
+                result = this.tableDetail.getDbTypeShort();
                 break;
             default:
                 result = RuleConst.UNDEFINE_RULE;
@@ -161,10 +169,10 @@ public class RuleSet {
             line = line.replaceAll(RuleConst.COLUMNAME, colum);
             line = ruleResult(line);
             result.append(line);
-            if (temp.size() > 1 ) {
+            if (temp.size() > 1) {
                 result.append("\n");
             }
-            
+
         }
         return result.toString();
     }

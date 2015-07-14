@@ -12,8 +12,10 @@ public class TableDetail {
     private String primaryKey;
     private List<String> colums;
     private String dbType;
+    private String dbTypeShort;
     private String modelClassName;
     private String controllerClassName;
+    private String controllerClassNameLower;
     private String viewName;
 
     public String getTableName() {
@@ -48,6 +50,14 @@ public class TableDetail {
         this.dbType = dbType;
     }
 
+    public String getDbTypeShort() {
+        return dbTypeShort;
+    }
+
+    public void setDbTypeShort(String dbTypeShort) {
+        this.dbTypeShort = dbTypeShort;
+    }
+
     public String getModelClassName() {
         return modelClassName;
     }
@@ -64,6 +74,14 @@ public class TableDetail {
         this.controllerClassName = controllerClassName;
     }
 
+    public String getControllerClassNameLower() {
+        return controllerClassNameLower;
+    }
+
+    public void setControllerClassNameLower(String controllerClassNameLower) {
+        this.controllerClassNameLower = controllerClassNameLower;
+    }
+
     public String getViewName() {
         return viewName;
     }
@@ -71,8 +89,5 @@ public class TableDetail {
     public void setViewName(String viewName) {
         this.viewName = viewName;
     }
-    
-    
-    
-    
+
 }
