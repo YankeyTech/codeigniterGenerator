@@ -30,7 +30,7 @@
                                     
                                     <tr class="odd gradeA">
                                         <td colspan="2" align="center">   
-                                            <a href="<?php admin_<DBTYPESHORT>_site('<VIEWNAME>/'); ?>">
+                                            <a href="<?php echo admin_<DBTYPESHORT>_site('<VIEWNAME>/'); ?>">
                                                 <button type="button" class="btn btn-primary"> กลับ </button>
                                             </a>
                                         </td>

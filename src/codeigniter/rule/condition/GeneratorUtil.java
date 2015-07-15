@@ -15,8 +15,6 @@ import java.sql.SQLException;
  */
 public class GeneratorUtil {
 
-    
-
     private GeneratorUtil() {
     }
 
@@ -28,8 +26,9 @@ public class GeneratorUtil {
         tableDetail.setDbType(NameUtil.dbType(table));
         tableDetail.setDbTypeShort(NameUtil.dbTypeShort(table));
         tableDetail.setModelClassName(NameUtil.classModelName(table));
+        tableDetail.setModelClassNameLower(NameUtil.classModelNameLower(table));
         tableDetail.setControllerClassName(NameUtil.controllerClassName(table));
-         tableDetail.setControllerClassNameLower(NameUtil.controllerClassNameLower(table));
+        tableDetail.setControllerClassNameLower(NameUtil.controllerClassNameLower(table));
         tableDetail.setViewName(NameUtil.viewName(table));
         return tableDetail;
     }

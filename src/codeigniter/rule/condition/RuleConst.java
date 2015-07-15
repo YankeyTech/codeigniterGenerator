@@ -9,10 +9,12 @@ public class RuleConst {
     //RULE NAME
     public static final String UNDEFINE_RULE = "{Undefine Rule}";
     public static final String MODELCLASSNAME = "<MODELCLASSNAME>";
+
+    public static final String MODELCLASSNAMELOWER = "<MODELCLASSNAMELOWER>";
     public static final String CONTROLLERCLASSNAME = "<CONTROLLERCLASSNAME>";
     public static final String CONTROLLERLOWER = "<CONTROLLERLOWER>";
     public static final String VIEWNAME = "<VIEWNAME>";
-    
+
     public static final String TABLENAME = "<TABLENAME>";
     public static final String TEMPLATENAME = "<TEMPLATENAME>";
 

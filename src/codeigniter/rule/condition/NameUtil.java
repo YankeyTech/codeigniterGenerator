@@ -7,7 +7,7 @@ package codeigniter.rule.condition;
 public class NameUtil {
 
     public static final String MASTERTABLE = "master";
-    public static final String TRANACTIONTABLE = "transection";
+    public static final String TRANACTIONTABLE = "transaction";
     public static final String MASTER = "ms";
     public static final String TRANACTION = "tr";
     public static final String _MASTER = "_ms";
@@ -20,6 +20,10 @@ public class NameUtil {
 
         String classModelName = NameUtil.firstCharUpper(table.toLowerCase());
         return classModelName + "_model";
+    }
+    
+    public static String classModelNameLower(String table) {
+        return classModelName(table).toLowerCase() ;
     }
 
     public static String firstCharUpper(String str) {

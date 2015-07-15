@@ -14,6 +14,7 @@ public class TableDetail {
     private String dbType;
     private String dbTypeShort;
     private String modelClassName;
+    private String modelClassNameLower;
     private String controllerClassName;
     private String controllerClassNameLower;
     private String viewName;
@@ -89,5 +90,14 @@ public class TableDetail {
     public void setViewName(String viewName) {
         this.viewName = viewName;
     }
+
+    public String getModelClassNameLower() {
+        return modelClassNameLower;
+    }
+
+    public void setModelClassNameLower(String modelClassNameLower) {
+        this.modelClassNameLower = modelClassNameLower;
+    }
+    
 
 }

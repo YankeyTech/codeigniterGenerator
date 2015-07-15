@@ -35,6 +35,7 @@ public class RuleSet {
         this.templateName = templateName;
 
         ruleSetCondition.add(RuleConst.MODELCLASSNAME);
+        ruleSetCondition.add(RuleConst.MODELCLASSNAMELOWER);
         ruleSetCondition.add(RuleConst.TABLENAME);
         ruleSetCondition.add(RuleConst.TEMPLATENAME);
         ruleSetCondition.add(RuleConst.PRIMARYKEY);
@@ -86,6 +87,9 @@ public class RuleSet {
         switch (Condition) {
             case RuleConst.MODELCLASSNAME:
                 result = this.tableDetail.getModelClassName();
+                break;
+            case RuleConst.MODELCLASSNAMELOWER:
+                result = this.tableDetail.getModelClassNameLower();
                 break;
             case RuleConst.CONTROLLERCLASSNAME:
                 result = this.tableDetail.getControllerClassName();

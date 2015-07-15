@@ -22,7 +22,7 @@ class <MODELCLASSNAME> extends CI_Model {
     private function set_Input_to_model() {
         $this-><PRIMARYKEY> = $this->input->post('<PRIMARYKEY>');
         >>COLUMLOOP_BEGIN
-        $this->province_name = $this->input->post('<COLUMNAME>');
+        $this-><COLUMNAME> = $this->input->post('<COLUMNAME>');
         <<COLUMLOOP_END
         $this->isdelete = 0;
     }

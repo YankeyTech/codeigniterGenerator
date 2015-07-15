@@ -9,7 +9,7 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('<DBTYPE>/<CONTROLLERLOWER>_<DBTYPESHORT>_model');
+        $this->load->model('<DBTYPE>/<MODELCLASSNAMELOWER>');
     }
 
     public function index() {
@@ -22,7 +22,7 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
     }
 
     public function create_form() {
-        $data = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->get_object_array();
+        $data = $this-><MODELCLASSNAMELOWER>->get_object_array();
         $data['action'] = 'action_insert';
         $this->form($data);
     }
@@ -30,7 +30,7 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
     public function modify_form($<PRIMARYKEY> = '') {
         $id = num_param_url_decode($<PRIMARYKEY>);
         if ($id) {
-            $data = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->find_id($id);
+            $data = $this-><MODELCLASSNAMELOWER>->find_id($id);
             $data['action'] = 'action_update';
             $this->form($data);
         } else {
@@ -39,7 +39,7 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
     }
 
     public function save() {
-        $status_id = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->save();
+        $status_id = $this-><MODELCLASSNAMELOWER>->save();
         if ($status_id) {
             echo $status_id;
             redirect(admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>/retrieve/' . num_param_url_encode($status_id) . '/success'));
@@ -56,7 +56,7 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
     }
 
     public function remove() {
-        $status = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->update_delete();
+        $status = $this-><MODELCLASSNAMELOWER>->update_delete();
         if ($status) {
             $data['url_back'] = admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>');
             $data['succes_message'] = 'delete_success';
@@ -70,7 +70,7 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
     public function retrieve($<PRIMARYKEY> = '', $save_success = 'none') {
         $id = num_param_url_decode($<PRIMARYKEY>);
         if ($id) {
-            $data = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->find_id($id);
+            $data = $this-><MODELCLASSNAMELOWER>->find_id($id);
             $data['save_success'] = $save_success;
             $this->template->append_page_section('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show');
             $this->template->render_admin_template($this, $data);
@@ -80,7 +80,7 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
     }
 
     public function retrieve_all() {
-        $data['<CONTROLLERLOWER>_list'] = $this-><CONTROLLERLOWER>_<DBTYPESHORT>_model->find_all();
+        $data['<CONTROLLERLOWER>_list'] = $this-><MODELCLASSNAMELOWER>->find_all();
         $this->template->append_page_section('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show_all');
         $this->template->append_javascript('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show_all_javascript');
         $this->template->render_admin_template($this, $data);

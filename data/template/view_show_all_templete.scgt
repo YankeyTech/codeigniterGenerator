@@ -23,6 +23,7 @@
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
+                                <th>seq</th>
                                 >>COLUMLOOP_BEGIN
                                 <th> <COLUMNAME> </th>
                                 <<COLUMLOOP_END
