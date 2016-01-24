@@ -31,7 +31,7 @@ public class QueryData {
         resultSet = QueryProcess.executeQuery(sql);
         while (resultSet.next()) {
             boolean pk = "PRI".equals(resultSet.getString("Key"));
-            boolean del = "isdelete".equals(resultSet.getString("Field"));
+            boolean del = "is_deleted".equals(resultSet.getString("Field"));
             if (!pk && !del) {
                 result.add(resultSet.getString("Field"));
             }

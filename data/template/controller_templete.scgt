@@ -1,4 +1,4 @@
-{"header":{"directory":"Controller/poonnut/admin/<DBTYPE>","filename":"<CONTROLLERCLASSNAME>", "extention":"php"}}
+{"header":{"directory":"controller/manage_system","filename":"<CONTROLLERCLASSNAME>", "extention":"php"}}
 <?php
 
 if (!defined("BASEPATH")) {
@@ -9,7 +9,7 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('<DBTYPE>/<MODELCLASSNAMELOWER>');
+        $this->load->model('manage_system/<MODELCLASSNAMELOWER>');
     }
 
     public function index() {
@@ -17,8 +17,8 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
     }
 
     protected function form($data) {
-        $this->template->append_page_section('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_form');
-        $this->template->render_admin_template($this, $data);
+        $this->template->append_page_section('manage_system/<CONTROLLERLOWER>/form');
+        $this->template->render_main_template($this, $data);
     }
 
     public function create_form() {
@@ -41,49 +41,41 @@ class <CONTROLLERCLASSNAME> extends CI_Controller {
     public function save() {
         $status_id = $this-><MODELCLASSNAMELOWER>->save();
         if ($status_id) {
-            echo $status_id;
-            redirect(admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>/retrieve/' . num_param_url_encode($status_id) . '/success'));
+            $this->action_succes("ข้อมูลบันทึกเรียบร้อย");
         } else {
-            redirect(admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>/action_error'));
+            $this->action_error();
         }
     }
 
     public function action_error() {
-        $data['url_back'] = admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>');
+        $data['url_back'] = manage_system_site('<CONTROLLERLOWER>');
         $data['error_message'] = 'action_error';
         $this->template->append_page_section('block/error_block');
-        $this->template->render_admin_template($this, $data);
+        $this->template->render_main_template($this, $data);
+    }
+
+    public function action_succes($message = '') {
+        $data['url_back'] = manage_system_site('<CONTROLLERLOWER>');
+        $data['error_message'] = 'action_error';
+        $data['message'] = $message;
+        $this->template->append_page_section('block/success_block');
+        $this->template->render_main_template($this, $data);
     }
 
     public function remove() {
         $status = $this-><MODELCLASSNAMELOWER>->update_delete();
         if ($status) {
-            $data['url_back'] = admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>');
-            $data['succes_message'] = 'delete_success';
-            $this->template->append_page_section('block/success_block');
-            $this->template->render_admin_template($this, $data);
+            $this->action_succes("ข้อมูลลบเรียบร้อย");
         } else {
-            redirect(admin_<DBTYPESHORT>_site('<CONTROLLERLOWER>/action_error'));
-        }
-    }
-
-    public function retrieve($<PRIMARYKEY> = '', $save_success = 'none') {
-        $id = num_param_url_decode($<PRIMARYKEY>);
-        if ($id) {
-            $data = $this-><MODELCLASSNAMELOWER>->find_id($id);
-            $data['save_success'] = $save_success;
-            $this->template->append_page_section('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show');
-            $this->template->render_admin_template($this, $data);
-        } else {
-            not_found_error();
+            $this->action_error();
         }
     }
 
     public function retrieve_all() {
         $data['<CONTROLLERLOWER>_list'] = $this-><MODELCLASSNAMELOWER>->find_all();
-        $this->template->append_page_section('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show_all');
-        $this->template->append_javascript('admin/<DBTYPE>/<CONTROLLERLOWER>/<CONTROLLERLOWER>_show_all_javascript');
-        $this->template->render_admin_template($this, $data);
+        $this->template->append_page_section('manage_system/<CONTROLLERLOWER>/main');
+        $this->template->append_js_embed('manage_system/<CONTROLLERLOWER>/main_js');
+        $this->template->render_main_template($this, $data);
     }
 
 }
