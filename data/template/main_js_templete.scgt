@@ -1,0 +1,11 @@
+{"header":{"directory":"view/manage_system/<VIEWNAME>","filename":"main_js", "extention":"php"}}
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+<script>
+    var id = 0;
+    $(".del-data").click(function () {
+        id = $(this).attr("id");
+        $("#<PRIMARYKEY>").val(id);
+    });
+
+</script>

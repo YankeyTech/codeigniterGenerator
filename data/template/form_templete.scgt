@@ -1,0 +1,49 @@
+{"header":{"directory":"view/manage_system/<VIEWNAME>","filename":"form", "extention":"php"}}
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+<div class="panel box-shadow-none content-header">
+    <div class="panel-body">
+        <div class="col-md-6">
+            <p class="animated fadeInDown">
+                Tables <span class="fa-angle-right fa"></span><VIEWNAME>
+            </p>
+        </div>
+        <div class="right ">
+            <a href="<?php echo echo_manage_system_site('<VIEWNAME>'); ?>"> 
+                <input type="button" class=" btn btn-warning" value="< กลับไปหน้าหลัก <VIEWNAME>">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="form-element">
+    <div class="col-md-12 padding-0">
+        <div class="col-md-12">
+            <div class="col-md-12 panel">
+                <div class="col-md-12 panel-heading">
+                    <h4>Form Validation</h4>
+                </div>
+                <div class="col-md-12 panel-body" style="padding-bottom:30px;">
+                    <div class="col-md-12">
+                        <form class="cmxform" id="signupForm" action="<?php echo_manage_system_site('<VIEWNAME>/save'); ?>" method="post">
+                            <?php if (isset($<PRIMARYKEY>)) { ?>
+                                <input type="hidden" id="<PRIMARYKEY>" name="<PRIMARYKEY>" value="<?php echo (num_param_url_encode($<PRIMARYKEY>)) ?>">
+                            <?php } ?>                             
+							<div class="col-md-6">
+							>>COLUMLOOP_BEGIN
+                                <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                                    <input type="text" class="form-text" id="validate_<COLUMNAME>" name="<COLUMNAME>" value="{<COLUMNAME>}"  required>
+                                    <span class="bar"></span>
+                                    <label><COLUMNAME></label>
+                                </div>
+                            <<COLUMLOOP_END
+                            <div class="col-md-12">
+                                <input class="submit btn btn-danger" type="submit" value="Submit">
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
